@@ -9,6 +9,7 @@ public class UserUt {
 
     public UserUt(long id, String name) {
         this.id = id;
+
         this.name = name;
     }
 }
