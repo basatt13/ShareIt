@@ -4,7 +4,6 @@ import com.example.shareit.user.User;
 import com.example.shareit.user.repository.UserRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

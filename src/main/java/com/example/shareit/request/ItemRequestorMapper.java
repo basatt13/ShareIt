@@ -1,7 +1,6 @@
 package com.example.shareit.request;
 
 import com.example.shareit.UserUt;
-
 class ItemRequestMapper {
 
     public ItemRequestDTO toItemRequestDTO(ItemRequest itemRequest) {

@@ -3,8 +3,6 @@ package com.example.shareit.booking;
 import com.example.shareit.item.Item;
 import com.example.shareit.user.User;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-
 import java.time.LocalDate;
 
 @Data

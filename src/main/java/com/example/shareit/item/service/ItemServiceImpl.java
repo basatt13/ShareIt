@@ -1,6 +1,5 @@
 package com.example.shareit.item.service;
 
-import com.example.shareit.item.Item;
 import com.example.shareit.item.ItemDTO;
 import com.example.shareit.item.repository.ItemRepositoryImpl;
 import lombok.RequiredArgsConstructor;

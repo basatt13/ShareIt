@@ -1,10 +1,7 @@
 package com.example.shareit.item.repository;
 
-import com.example.shareit.item.Item;
 import com.example.shareit.item.ItemDTO;
-
 import java.util.List;
-
 
 interface ItemRepository {
 

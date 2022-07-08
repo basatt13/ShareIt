@@ -2,19 +2,17 @@ package com.example.shareit.item.repository;
 
 import com.example.shareit.exception.DataNotFoundException;
 import com.example.shareit.exception.NotFoundIdException;
-import com.example.shareit.item.Item;
 import com.example.shareit.item.ItemDTO;
-import com.example.shareit.item.ItemMapper;
-import com.example.shareit.user.repository.UserRepositoryImpl;
 import com.example.shareit.user.repository.UserResources;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Slf4j
 public class ItemRepositoryImpl implements ItemRepository {
 
 
@@ -119,7 +117,8 @@ public class ItemRepositoryImpl implements ItemRepository {
             return itemDTOList;
         } else {
             for (ItemDTO i : ItemsResources.items) {
-                if (i.getDescription().toLowerCase().contains(text.toLowerCase()) || i.getName().toLowerCase().contains(text.toLowerCase())) {
+                if (i.getDescription().toLowerCase().contains(text.toLowerCase()) ||
+                        i.getName().toLowerCase().contains(text.toLowerCase())) {
                     if (i.getAvailable()) {
                         itemDTOList.add(i);
                     }
