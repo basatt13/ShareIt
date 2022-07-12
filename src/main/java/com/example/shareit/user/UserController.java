@@ -1,23 +1,27 @@
 package com.example.shareit.user;
 
-import com.example.shareit.exception.DataNotFoundException;
+import com.example.shareit.user.service.UserService;
 import com.example.shareit.user.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @Validated
+@Slf4j
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @GetMapping
-    List<User> allUsers() {
+    Collection<User> allUsers() {
         return userService.allUsers();
     }
 
@@ -27,12 +31,12 @@ public class UserController {
     }
 
     @PostMapping
-    User addUser(@Valid @RequestBody User user) throws DataNotFoundException {
+    User addUser(@Valid @RequestBody UserDTO user) {
         return userService.addUser(user);
     }
 
     @PatchMapping("/{userId}")
-    User updateUser(@Valid @RequestBody User user,
+    User updateUser(@Valid @RequestBody UserDTO user,
                     @PathVariable long userId) {
         return userService.updateUser(user, userId);
     }

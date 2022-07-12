@@ -1,11 +1,11 @@
 package com.example.shareit.item;
 
-import com.example.shareit.item.service.ItemServiceImpl;
+import com.example.shareit.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @RestController
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/items")
 @Validated
 public class ItemController {
-    private final ItemServiceImpl itemService;
+    private final ItemService itemService;
 
     @PostMapping
     public ItemDTO addItems(@RequestHeader("X-Sharer-User-Id") long userId,

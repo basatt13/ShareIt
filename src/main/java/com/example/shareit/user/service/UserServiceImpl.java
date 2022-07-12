@@ -1,24 +1,29 @@
 package com.example.shareit.user.service;
 
 import com.example.shareit.user.User;
-import com.example.shareit.user.repository.UserRepositoryImpl;
+import com.example.shareit.user.UserDTO;
+import com.example.shareit.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
+import java.util.Collection;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepositoryImpl userRepository;
+
+
+    private final UserRepository userRepository;
 
     @Override
-    public List<User> allUsers() {
+    public Collection<User> allUsers() {
         return userRepository.allUsers();
     }
 
     @Override
-    public User addUser(User user) {
+    public User addUser(UserDTO user) {
         return userRepository.addUser(user);
     }
 
@@ -28,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user, long id) {
+    public User updateUser(UserDTO user, long id) {
         return userRepository.updateUser(user, id);
     }
 
