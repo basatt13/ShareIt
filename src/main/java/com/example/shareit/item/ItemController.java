@@ -1,19 +1,21 @@
 package com.example.shareit.item;
 
-import com.example.shareit.item.service.ItemServiceImpl;
+import com.example.shareit.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/items")
 @Validated
 public class ItemController {
-    private final ItemServiceImpl itemService;
+    private final ItemService itemService;
 
     @PostMapping
     public ItemDTO addItems(@RequestHeader("X-Sharer-User-Id") long userId,
@@ -34,7 +36,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDTO> getAllItems(@RequestHeader("X-Sharer-User-id") long userId) {
+    public Set<Item> getAllItems(@RequestHeader("X-Sharer-User-id") long userId) {
         return itemService.getItemsByUserId(userId);
     }
 

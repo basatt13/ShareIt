@@ -3,67 +3,68 @@ package com.example.shareit.user.repository;
 import com.example.shareit.exception.EmailDoubleException;
 import com.example.shareit.exception.DataNotFoundException;
 import com.example.shareit.user.User;
+import com.example.shareit.user.UserDTO;
+import com.example.shareit.user.UserMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
+    private final Map<Long, User> users = new HashMap<>();
+    private final List<Long> ids = new ArrayList<>();
 
     @Override
-    public List<User> allUsers() {
-        List<User> allusers = new ArrayList<>();
-        for (User u : UserResources.users.values()) {
-            allusers.add(u);
-        }
-        return allusers;
+    public Collection<User> allUsers() {
+        return users.values();
     }
 
     @Override
-    public User addUser(User user) {
+    public User addUser(UserDTO userDTO) {
 
-        if (user.getEmail() == null) {
+        if (userDTO.getEmail() == null) {
             throw new DataNotFoundException("Не указан email пользователя");
         }
-        validateEmail(user);
-        user.setId(UserResources.ids.size() + 1);
-        UserResources.users.put(user.getId(), user);
-        UserResources.ids.add(user.getId());
+        validateEmail(userDTO);
+        userDTO.setId(ids.size() + 1);
+        User user = UserMapper.toUser(userDTO);
+        users.put(user.getId(), user);
+        ids.add(user.getId());
 
         return user;
     }
 
     @Override
-    public User getUser(long id) {
-        return UserResources.users.get(id);
+    public User getUser(@NotNull long id) {
+        return users.get(id);
     }
 
     @Override
-    public User updateUser(User user, long id) {
+    public User updateUser(UserDTO user, long id) {
         validateEmail(user);
         if (user.getName() != null && user.getEmail() != null) {
-            UserResources.users.get(id).setEmail(user.getEmail());
-            UserResources.users.get(id).setName(user.getName());
+            users.get(id).setEmail(user.getEmail());
+            users.get(id).setName(user.getName());
         } else if (user.getName() == null) {
-            UserResources.users.get(id).setEmail(user.getEmail());
+            users.get(id).setEmail(user.getEmail());
         } else if (user.getEmail() == null) {
-            UserResources.users.get(id).setName(user.getName());
+            users.get(id).setName(user.getName());
         } else {
-            return UserResources.users.get(id);
+            return users.get(id);
         }
 
-        return UserResources.users.get(id);
+        return users.get(id);
     }
 
     @Override
-    public void deleteUser(long id) {
-        UserResources.users.remove(id);
+    public void deleteUser(@NotNull long id) {
+        users.remove(id);
     }
 
-    public void validateEmail(User user) {
-        for (User u : UserResources.users.values()) {
+    public void validateEmail(UserDTO user) {
+        for (User u : users.values()) {
             if (u.getEmail().equals(user.getEmail())) {
                 throw new EmailDoubleException("Пользователь с email:" + user.getEmail() + " уже существует!");
             }

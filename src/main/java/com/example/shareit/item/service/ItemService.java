@@ -4,6 +4,7 @@ import com.example.shareit.item.Item;
 import com.example.shareit.item.ItemDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ItemService {
 
@@ -13,7 +14,7 @@ public interface ItemService {
 
     ItemDTO getItem(long itemId);
 
-    List<ItemDTO> getItemsByUserId(long UserId);
+    Set<Item> getItemsByUserId(long UserId);
 
     List<ItemDTO> getItemByText(String text);
 }

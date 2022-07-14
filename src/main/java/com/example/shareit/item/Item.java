@@ -12,6 +12,8 @@ public class Item {
     private String description;
     private boolean available;
     private User owner;
+
+
     @Builder.Default
     private ItemRequest request = null;
 

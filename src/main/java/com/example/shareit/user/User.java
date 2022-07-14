@@ -1,17 +1,19 @@
 package com.example.shareit.user;
 
-import lombok.Builder;
+import com.example.shareit.item.Item;
+import com.example.shareit.item.ItemDTO;
 import lombok.Data;
-
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Data
 public class User {
 
     private long id;
     private String name;
-    @Email
+
     private String email;
+
 
     public User(String name, String email) {
         this.name = name;
