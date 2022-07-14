@@ -14,7 +14,7 @@ import java.util.*;
 public class UserRepositoryImpl implements UserRepository {
 
     private final Map<Long, User> users = new HashMap<>();
-   private final List<Long> ids = new ArrayList<>();
+    private final List<Long> ids = new ArrayList<>();
 
     @Override
     public Collection<User> allUsers() {

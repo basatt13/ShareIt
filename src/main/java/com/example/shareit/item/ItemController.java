@@ -4,9 +4,11 @@ import com.example.shareit.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +36,7 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<ItemDTO> getAllItems(@RequestHeader("X-Sharer-User-id") long userId) {
+    public Set<Item> getAllItems(@RequestHeader("X-Sharer-User-id") long userId) {
         return itemService.getItemsByUserId(userId);
     }
 

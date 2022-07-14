@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getItemsByUserId(long userId) {
+    public Set<Item> getItemsByUserId(long userId) {
         return itemRepository.getItemsByUserId(userId);
     }
 

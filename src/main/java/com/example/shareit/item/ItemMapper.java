@@ -27,6 +27,6 @@ public class ItemMapper {
 
     public Item toItem(ItemDTO itemDTO, long userId) {
         return new Item(itemDTO.getId(), itemDTO.getName(), itemDTO.getDescription(), itemDTO.getAvailable(),
-             userRepository.getUser(userId));
+                userRepository.getUser(userId));
     }
 }
